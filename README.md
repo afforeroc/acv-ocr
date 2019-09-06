@@ -22,15 +22,16 @@ This python code is a quickstart that show how to use OCR of Computer Vision API
 ```
 pip install -r requirements.txt
 ```
+4. Modify the *.env* file with your credentials of Computer Vision Service
 
 ## Running the sample
-1. Run the sample using a local image *atoms.png*
+1. Run the sample using a local image: *atoms.png*
 ```
-python ocr-local.py
+python acv-ocr-local.py
 ```
-2. Run the sample using a [this](https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Atomist_quote_from_Democritus.png/338px-Atomist_quote_from_Democritus.png) remote image:
+2. Run the sample using [this](https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Atomist_quote_from_Democritus.png/338px-Atomist_quote_from_Democritus.png) remote image
 ```
-python ocr-remote.py
+python acv-ocr-local.py
 ```
 
 ## Documentation

@@ -1,0 +1,5 @@
+# Requirements
+python-dotenv
+requests
+matplotlib
+Pillow
