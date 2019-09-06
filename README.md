@@ -8,7 +8,7 @@ products:
 ---
 
 # Sample Solution that uses OCR of Computer Vision
-This **Python** code is a quickstart that show how to use **OCR** of **Computer Vision API** for local and remote images
+This **Python** code is a quickstart that show how to use **OCR** with **Computer Vision API** for local and remote images
 
 ## Prerequisites
 - [Python 3.7.4+](https://www.python.org/)
