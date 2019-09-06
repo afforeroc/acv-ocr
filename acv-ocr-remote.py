@@ -55,7 +55,7 @@ text = text[0:len(text)-1]
 print(text)
 
 # Write data in a file 
-extracted = open("text-from-remote.txt","w") 
+extracted = open("output/text-from-remote.txt","w") 
 extracted.write(text) 
 extracted.close()
 

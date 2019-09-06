@@ -56,7 +56,7 @@ text = text[0:len(text)-1]
 print(text)
 
 # Write data in a file 
-extracted = open("text-from-local.txt","w") 
+extracted = open("output/text-from-local.txt","w") 
 extracted.write(text) 
 extracted.close()
 
