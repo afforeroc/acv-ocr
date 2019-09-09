@@ -1,7 +1,6 @@
-# Libraries for reading environment variables
-import os
-from os.path import join, dirname
+# Libraries getting the value of the environment variables
 from dotenv import load_dotenv
+from os import getenv, path
 
 # Libraries for post requesting and json manipulating 
 import requests
@@ -13,32 +12,24 @@ from matplotlib.patches import Rectangle
 from PIL import Image
 from io import BytesIO
 
-# Using ".env" file to obtain credentials 
-dotenv_path = join(dirname(__file__), '.env')
+# Loading values of env file
+dotenv_path = path.join(path.dirname(__file__), '.env')
 load_dotenv(dotenv_path)
+base_endpoint = getenv('base_endpoint')
+subscription_key = getenv('subscription_key')
 
-# Accessing variables
-vision_base_url = os.getenv('vision_base_url')
-subscription_key = os.getenv('subscription_key')
-assert subscription_key
-
-# Using OCR service
-ocr_url = vision_base_url + "ocr"
-
-# Set image_path that you want to analyze
+# Loading image to analyze
 image_path = "atoms.png"
-
-# Read the image into a byte array
 image_data = open(image_path, "rb").read()
 
-# Set Content-Type to octet-stream
+# Constructing post request format
+ocr_endpoint = base_endpoint + "ocr"
 headers = {'Ocp-Apim-Subscription-Key': subscription_key, 'Content-Type': 'application/octet-stream'}
 params = {'language': 'es', 'detectOrientation': 'true'}
-
-# Put the byte array into your post request
-response = requests.post(ocr_url, headers=headers, params=params, data=image_data)
-response.raise_for_status()
+response = requests.post(ocr_endpoint, headers=headers, params=params, data=image_data)
 analysis = response.json()
+
+# Printing response on JSON format
 #print(json.dumps(analysis, indent=4, sort_keys=True))
     
 # Extract the word bounding boxes and text
@@ -55,8 +46,10 @@ for line in line_infos:
 text = text[0:len(text)-1]
 print(text)
 
-# Write data in a file 
-extracted = open("output/text-from-local.txt","w") 
+# Writting output text
+filename = path.splitext(image_path)[0]
+output_text = "output/" + filename + ".txt"
+extracted = open(output_text,"w") 
 extracted.write(text) 
 extracted.close()
 
