@@ -27,11 +27,11 @@ pip install -r requirements.txt
 ## Running the sample
 1. Run the sample using a local image: *atoms.png*
 ```
-python acv-ocr-local.py
+python acv-ocr.py local
 ```
 2. Run the sample using [this](https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Atomist_quote_from_Democritus.png/338px-Atomist_quote_from_Democritus.png) remote image
 ```
-python acv-ocr-remote.py
+python acv-ocr.py remote
 ```
 
 ## Documentation
