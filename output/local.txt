@@ -3,6 +3,6 @@ EXISTS
 EXCEPT
 ATOMS
 AND EMPTY
-SPACE,
+SPACE.
 Everything else
 is opinion.
