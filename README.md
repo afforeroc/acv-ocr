@@ -35,11 +35,9 @@ python acv-ocr.py remote
 ```
 
 ## Images Sources
-* [Local image: Althea Gibson's quote](https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Quote.JPG/320px-Quote.JPG)
-* [Remote image: Democritus's quote](https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Quote.JPG/320px-Quote.JPG)
+* Local image: [Althea Gibson's quote](https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Quote.JPG/320px-Quote.JPG)
+* Remote image: [Democritus's quote](https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Quote.JPG/320px-Quote.JPG)
 
 ## Documentation
 * [Azure Computer Vision](https://azure.microsoft.com/en-us/services/cognitive-services/computer-vision/)
 * [Quickstart: Extract printed text (OCR) using the Computer Vision REST API and Python](https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/quickstarts/python-print-text)
-
-
