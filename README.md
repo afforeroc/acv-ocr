@@ -36,7 +36,7 @@ python acv-ocr.py remote
 
 ## Images Sources
 * Local image: [Althea Gibson's quote](https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Quote.JPG/320px-Quote.JPG)
-* Remote image: [Democritus's quote](https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Quote.JPG/320px-Quote.JPG)
+* Remote image: [Democritus's quote](https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Atomist_quote_from_Democritus.png/338px-Atomist_quote_from_Democritus.png)
 
 ## Documentation
 * [Azure Computer Vision](https://azure.microsoft.com/en-us/services/cognitive-services/computer-vision/)
