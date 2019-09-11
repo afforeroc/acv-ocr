@@ -1,42 +1,41 @@
 from dotenv import load_dotenv              # Load env file
 from os import getenv                       # Get env variables
 from sys import argv                        # Argument vector
-from requests import post                   # Post to endpoint
+from requests import post, get              # Post to endpoint, get remote image
 import json                                 # Transform respond to json format
+from io import BytesIO                      # Convert bytes-like objects to bytes objects
 from PIL import Image                       # Open image to display
 import matplotlib.pyplot as plt             # Show image and extracted text
 from matplotlib.patches import Rectangle    # Draw the rectangles
 
-# Loading values of env file
+# Load values of env file
 load_dotenv(".env")
 base_endpoint = getenv('base_endpoint')
 subscription_key = getenv('subscription_key')
 
-# Remote image
-image_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/" + \
+# Local and remote images
+local_image = "input/quote.jpg"
+remote_image = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/" + \
     "Atomist_quote_from_Democritus.png/338px-Atomist_quote_from_Democritus.png"
 
-# Local image
-image_path = "input/atoms.png"
-image_data = open(image_path, "rb").read()
-
-# Constructing post request format
+# Post request and response
 source = argv[1]
 ocr_url = base_endpoint + "ocr"
 params = {'language': 'unk', 'detectOrientation': 'true'}
 if source == "local":
+    image_data = open(local_image, "rb").read()
     headers = {'Ocp-Apim-Subscription-Key': subscription_key, 'Content-Type': 'application/octet-stream'}
     response = post(ocr_url, headers=headers, params=params, data=image_data)
 else:
+    data = {'url': remote_image}
     headers = {'Ocp-Apim-Subscription-Key': subscription_key} 
-    data = {'url': image_url}
     response = post(ocr_url, headers=headers, params=params, json=data)
-
-# Printing response on JSON format
-#print(json.dumps(analysis, indent=4, sort_keys=True))
-    
-# Extract the word bounding boxes and text
 resp_json = response.json()
+
+# Print response on JSON format
+#print(json.dumps(resp_json, indent=4, sort_keys=True))
+    
+# Extract and print text
 text = ''
 line_infos = [region["lines"] for region in resp_json["regions"]]
 word_infos = []
@@ -50,15 +49,18 @@ for line in line_infos:
 text = text[0:len(text)-1]
 print(text)
 
-# Writting output text
+# Write output text
 output_file = "output/" + source + ".txt"
 f = open(output_file,"w") 
 f.write(text) 
 f.close()
 
 # Display the image and overlay it with the extracted text
+if source == "local":
+    image = Image.open(local_image)
+else:
+    image = Image.open(BytesIO(get(remote_image).content))
 plt.figure(figsize=(5, 5))
-image = Image.open(image_path)
 ax = plt.imshow(image, alpha=0.5)
 for word in word_infos:
     bbox = [int(num) for num in word["boundingBox"].split(",")]
